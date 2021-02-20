@@ -20,29 +20,26 @@ public class TicTacToeFieldTest {
 
     @Test
     public void setCell() {
-        field.setCell('x', 0, 0);
+        assertTrue(field.setCell('x', 0, 0));
         expected[0][0] = 'x';
         assertTrue(Arrays.deepEquals(field.getCells(), expected));
 
-        field.setCell('o', 0, 0);
-        assertTrue(Arrays.deepEquals(field.getCells(), expected));
+        assertFalse(field.setCell('o', 0, 0));
 
-        field.setCell('p', 2, 2);
-        assertTrue(Arrays.deepEquals(field.getCells(), expected));
+        assertFalse(field.setCell('p', 2, 2));
     }
 
     @Test
     public void removeCell() {
-        field.removeCell(0, 0);
-        assertTrue(Arrays.deepEquals(field.getCells(), expected));
+        assertFalse(field.removeCell(0, 0));
 
         field.setCell('x', 0, 0);
-        field.removeCell(0, 0);
+        assertTrue(field.removeCell(0, 0));
         assertTrue(Arrays.deepEquals(field.getCells(), expected));
 
         field.setCell('x', 0, 0);
         field.setCell('o', 1, 1);
-        field.removeCell(1, 1);
+        assertTrue(field.removeCell(1, 1));
         expected[0][0] = 'x';
         assertTrue(Arrays.deepEquals(field.getCells(), expected));
     }
